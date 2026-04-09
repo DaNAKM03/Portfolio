@@ -79,8 +79,8 @@
 
   /* ── HERO CARD ── */
   .hero-card {
-    margin: 12px 40px 0;
-    border-radius: 20px;
+    margin: 12px 0 0;
+    border-radius: 0;
     background: linear-gradient(-45deg, #74B9FF, #A29BFE, #6C5CE7, #9B8FFF, #74B9FF);
     background-size: 400% 400%;
     animation: gradientShift 10s ease infinite;
@@ -485,6 +485,85 @@
     50%  { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
   }
+
+  /* ── SCROLL ANIMATIONS ── */
+  .thumb-card {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.16,1,0.3,1),
+                box-shadow 0.22s ease, outline 0.18s ease;
+  }
+
+  .thumb-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Nav scroll shadow */
+  nav.scrolled {
+    box-shadow: 0 2px 20px rgba(0,0,0,0.07);
+    border-bottom-color: transparent;
+  }
+
+  /* Hero parallax wrapper */
+  .hero-card .hero-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    will-change: transform;
+  }
+
+  /* ── HERO ANIMATED BLOBS ── */
+  .hero-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0;
+    pointer-events: none;
+    animation: blobPulse 8s ease-in-out infinite;
+  }
+
+  .blob-1 {
+    width: 420px; height: 420px;
+    background: radial-gradient(circle, rgba(255,255,255,0.18) 0%, transparent 70%);
+    top: -100px; left: 5%;
+    animation-duration: 9s;
+    animation-delay: 0s;
+  }
+
+  .blob-2 {
+    width: 340px; height: 340px;
+    background: radial-gradient(circle, rgba(180,150,255,0.22) 0%, transparent 70%);
+    top: 20%; right: 10%;
+    animation-duration: 11s;
+    animation-delay: -3s;
+  }
+
+  .blob-3 {
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, rgba(120,180,255,0.2) 0%, transparent 70%);
+    bottom: -60px; left: 30%;
+    animation-duration: 13s;
+    animation-delay: -6s;
+  }
+
+  .blob-4 {
+    width: 380px; height: 380px;
+    background: radial-gradient(circle, rgba(200,160,255,0.15) 0%, transparent 70%);
+    top: 10%; left: 45%;
+    animation-duration: 10s;
+    animation-delay: -2s;
+  }
+
+  @keyframes blobPulse {
+    0%   { opacity: 0;    transform: scale(0.85) translate(0px, 0px); }
+    25%  { opacity: 1;    transform: scale(1.05) translate(12px, -10px); }
+    50%  { opacity: 0.7;  transform: scale(0.95) translate(-8px, 14px); }
+    75%  { opacity: 1;    transform: scale(1.08) translate(10px, 6px); }
+    100% { opacity: 0;    transform: scale(0.85) translate(0px, 0px); }
+  }
 </style>
 </head>
 <body>
@@ -499,15 +578,17 @@
 
 <!-- HERO CARD -->
 <div class="hero-card">
-  <p class="hero-quote">Daniel is a UX/UI designer and illustrator with a focus on building thoughtful, detail-driven digital experiences.</p>
-  <div class="hero-meta">
-    <div class="hero-meta-item">
-      <span class="hero-meta-icon">📍</span>
-      <span>Hayward, CA</span>
-    </div>
-    <div class="hero-meta-item">
-      <span class="hero-meta-icon">🎓</span>
-      <span>BFA Illustration &nbsp;·&nbsp; Minor CS &nbsp;·&nbsp; CSUEB '26</span>
+  <div class="hero-inner">
+    <p class="hero-quote">Daniel is a UX/UI designer and illustrator with a focus on building thoughtful, detail-driven digital experiences.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="hero-meta-icon">📍</span>
+        <span>Hayward, CA</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-icon">🎓</span>
+        <span>BFA Illustration &nbsp;·&nbsp; Minor CS &nbsp;·&nbsp; CSUEB '26</span>
+      </div>
     </div>
   </div>
 </div>
